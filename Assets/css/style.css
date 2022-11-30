@@ -1,0 +1,18 @@
+h1 {
+    text-align: center;
+    background-color: lightgray;
+    font-weight: 600;
+}
+
+.card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    max-width: 200px;
+}
+
+.row {
+   display: flex;
+   margin-right: 15px; 
+}
