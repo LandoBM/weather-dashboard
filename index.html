@@ -5,85 +5,95 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/Assets/css/style.css">
-    <title>Weather Dashboard</title>
+    <link rel="stylesheet" href="./Assets/css/style.css">
+    <title>The Weather Stream</title>
 </head>
 <body>
-    <h1>The Weather Dashboard</h1>
+    <h1>The Weather Stream Dashboard</h1>
     <div class="container-fluid">
         <div class="container text-center">
             <div class="row">
-              <div class="col-md-12 col-3 col-3">
+              <div class="col-12 col-md-3 col-xl-3">
                 <label>Search City:</label>
-                <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="Atlanta..." aria-describedby="button-addon2">
-                    <button class="btn btn-outline-secondary" type="button" id="button-addon2">Search</button>
-                </div>
-              </div>
-              <div class="col-md-8">
-                <div class="card" style="width: 30rem;">
-                    <div class="card-header">Atlanta</div>
-                    <div class="card-header">Today's Date</div>
-                    <div>
-                        <p> Temperature</p>
-                        <p> Wind</p>
-                        <p> Humidity</p>
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Atlanta">
+                    <div class="input-group-append">
+                        <button class="btn btn-dark search" type="button"  id="button-addon2">
+                            <i class="fas fa-search"></i>
+                        </button>
                     </div>
                 </div>
-                <div class="container">
-                    <row class="row">
-                        <button class="btn btn-outline-secondary" type="button" id="button-addon2">Atlanta</button>
+                <div class="container hist">
+                    <row class="row btnHis">
+                        <button class="btn btn-outline-success hisBttn" type="button">Baltimore</button>
                     </row>
                 </div>
+              </div>
+              <div class="col-12 col-md-3 col-xl-3">
+                <div class="row currentDay">
+                    <div class="card bg-light mb-3" style="max-width: 450px;">
+                        <h2 class="card-header currentDayCity">Atlanta</h2>
+                        <h3 class="card-header currentDayDate">...</h3>
+                        <div class="card-body currentDayBody">
+                            <p>Temerature:</p>
+                            <p>Humidity: </p>
+                            <p>Feels Like: </p>
+                            <p> Wind: </p>
+                        </div>
+                    </div>
+                </div>
+              </div>
             </div>
-            <div class="row">
-                <div class="card" style="width: 8rem;">
-                    <div class="card-header">Atlanta</div>
-                    <div class="card-header">Today's Date</div>
-                    <div>
-                        <p> Temperature</p>
-                        <p> Wind</p>
-                        <p> Humidity</p>
-                    </div>
+            <div class="row futureForecast">
+              <div class="card text-white bg-info mb-3 cardOne" style="max-width: 150px;">
+                <div class="card-header">Date</div>
+                <div class="card-body">
+                    <p>Temerature:</p>
+                    <p>Humidity: </p>
+                    <p>Feels Like: </p>
+                    <p> Wind: </p>
                 </div>
-                <div class="card" style="width: 8rem;">
-                    <div class="card-header">Atlanta</div>
-                    <div class="card-header">Today's Date</div>
-                    <div>
-                        <p> Temperature</p>
-                        <p> Wind</p>
-                        <p> Humidity</p>
-                    </div>
+              </div>
+              <div class="card text-white bg-info mb-3 cardOne" style="max-width: 150px;">
+                <div class="card-header">Date</div>
+                <div class="card-body">
+                    <p>Temerature:</p>
+                    <p>Humidity: </p>
+                    <p>Feels Like: </p>
+                    <p> Wind: </p>
                 </div>
-                <div class="card" style="width: 8rem;">
-                    <div class="card-header">Atlanta</div>
-                    <div class="card-header">Today's Date</div>
-                    <div>
-                        <p> Temperature</p>
-                        <p> Wind</p>
-                        <p> Humidity</p>
-                    </div>
+              </div>
+              <div class="card text-white bg-info mb-3 cardOne" style="max-width: 150px;">
+                <div class="card-header">Date</div>
+                <div class="card-body">
+                    <p>Temerature:</p>
+                    <p>Humidity: </p>
+                    <p>Feels Like: </p>
+                    <p> Wind: </p>
                 </div>
-                <div class="card" style="width: 8rem;">
-                    <div class="card-header">Atlanta</div>
-                    <div class="card-header">Today's Date</div>
-                    <div>
-                        <p> Temperature</p>
-                        <p> Wind</p>
-                        <p> Humidity</p>
-                    </div>
+              </div>
+              <div class="card text-white bg-info mb-3 cardOne" style="max-width: 150px;">
+                <div class="card-header">Date</div>
+                <div class="card-body">
+                    <p>Temerature:</p>
+                    <p>Humidity: </p>
+                    <p>Feels Like: </p>
+                    <p> Wind: </p>
                 </div>
-                <div class="card" style="width: 8rem;">
-                    <div class="card-header">Atlanta</div>
-                    <div class="card-header">Today's Date</div>
-                    <div>
-                        <p> Temperature</p>
-                        <p> Wind</p>
-                        <p> Humidity</p>
-                    </div>
+              </div>
+              <div class="card text-white bg-info mb-3 cardOne" style="max-width: 150px;">
+                <div class="card-header">Date</div>
+                <div class="card-body">
+                    <p>Temerature:</p>
+                    <p>Humidity: </p>
+                    <p>Feels Like: </p>
+                    <p> Wind: </p>
                 </div>
+              </div>
+              <script src="./Assets/javascript/"></script>
             </div>
-        </div> 
+          </div>
     </div>
+    
 </body>
 </html>

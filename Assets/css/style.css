@@ -1,18 +1,22 @@
 h1 {
     text-align: center;
     background-color: lightgray;
-    font-weight: 600;
+}
+
+label {
+    margin-top: 10px;
+    font-size: 25px;
 }
 
 .card {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    min-width: 0;
-    max-width: 200px;
+    margin: 20px;
 }
 
-.row {
-   display: flex;
-   margin-right: 15px; 
+.btnHis {
+    margin-top: 8px;
+    margin-bottom: 10px;
+}
+
+.currentDayDate {
+    font-size: 25px;
 }
