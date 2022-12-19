@@ -20,3 +20,7 @@ label {
 .currentDayDate {
     font-size: 25px;
 }
+
+#cd {
+    text-transform: capitalize;
+}

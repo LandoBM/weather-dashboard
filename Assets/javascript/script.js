@@ -24,10 +24,7 @@ var futureDate = document.querySelectorAll('.futureDayDate')
 //     })
 // }
 
-// $('.search').on('click', (event) => {
-//     event.preventDefault()
 
-// })
 
 function getWeather (city) {
     fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=${apiKey}`)
@@ -46,11 +43,29 @@ function getWeather (city) {
         const { speed } = data.wind;
         console.log(name,icon,description,temp,feels_like,humidity,speed)
         document.querySelector('.currentDayCity').innerHTML= name
-        document.querySelector('#icon').src = "https://openweathermap.org/img/wn/"+ icon +"@2x.png"
-        document.querySelector('#ct').innerHTML = temp + '°F'
-        document.querySelector('#cd').innerHTML= description
-        document.querySelector('#cf').innerHTML= feels_like + '°F'
-        document.querySelector('#ch').innerHTML= humidity + '%'
-        document.querySelector('#cw').innerHTML= speed + "MPH"
+        document.querySelector('#icon').src = "https://openweathermap.org/img/wn/"+ icon +".png"
+        document.querySelector('#ct').innerHTML = "Temperature: " + temp + '°F'
+        document.querySelector('#cd').innerHTML= "Descriptions: " + description
+        document.querySelector('#cf').innerHTML= "Feels Like: "+ feels_like + '°F'
+        document.querySelector('#ch').innerHTML= "Humidity: "+ humidity + '%'
+        document.querySelector('#cw').innerHTML= "Wind Speed: "+ speed + "MPH"
     }
 }
+
+function fiveDayWeather() {
+    fetch (`api.openweathermap.org/data/2.5/forecast?q=${city}&units=imperial&appid=${apiKey}`)
+    .then(function (response){
+        console.log(response)
+        return response.json()
+    })
+    .then(function(data){
+        console.log(data)
+    })
+
+    function displayFiveDay (data){
+        const {dt_txt} = data
+        const {icon,description} = data.weather
+        const {temp,feels_like,humidity} = data.main
+        const {speed} = data.wind
+    }
+} 
