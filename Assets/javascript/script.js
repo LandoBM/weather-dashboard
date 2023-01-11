@@ -4,7 +4,6 @@ var apiKey = 'e6c69d7bf2289a95c8c956423a13b208'
 var city = 'Atlanta'
 var currentWeather = document.querySelectorAll('.currentWeather')
 var currentDayWeather = document.querySelectorAll('.currentDayBody')
-var futureDayWeather = document.querySelectorAll('.weatherFuture')
 var currentTemp =document.querySelectorAll('.currentTemp')
 
 // Pull the Current Day and Date
@@ -12,22 +11,23 @@ var date = document.querySelectorAll('.currentDayDate')
 var futureDate = document.querySelectorAll('.futureDayDate')
 // console.log(date)
 
-// function getAPI () {
-//     fetch (`https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lon}&exclude=${part}&appid=${apikey}`)
-//     .then (function (response) {
-//         console.log(response)
-//         return response.json()
-//     })
-//     .then(function (data){
-//         // debugger
-//         console.log(data)
-//     })
-// }
+function searchDisplay (){
+    var searchHistory = JSON.parse(localStorage.getItem('searched')) | [];
+    $('.hisBtn').html('')
+    for (i = 0; i < searchHistory.length; i++) {
+        var city = searchHistory[i]
+    }
+    document.querySelector('search').addEventListener('click', app.getWeather())
+    document.querySelector('search').addEventListener('click', app.showWeather())
+}
 
-document.querySelector('.search').addEventListener('click', () => {
-    search()
-    // fiveDayWeather.search()
-})
+function deleteLocalS (){
+    localStorage.removeItem('searched')
+    $('.hisBtn').html('')
+    searchHistory = []
+}
+
+
 
 
 function getWeather (city) {
@@ -60,43 +60,44 @@ function getWeather (city) {
 }
 
 function fiveDayWeather() {
-    fetch (`api.openweathermap.org/data/2.5/forecast?q=${city}&units=imperial&appid=${apiKey}`)
+    fetch (`https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=imperial&appid=${apiKey}`)
     .then(function (response){
-        var fiveDayForcast = response.list
         return response.json()
     })
     .then(function(data){
-        for(i=0;i<5;i++){
-           futureDayWeather(i+1).innerHTML = 'Max' + Number(data.list[i].main.temp_min)
-        }
-        for(i=0;i<5;i++){
-            document.getElementById('#icon'+ (i+1)).src = "https://openweathermap.org/img/wn/"+ data.list[i].weather[0].icon +".png"
-        }
+      app.showWeather(data)
     })
-    .catch(error => console.log(`Error`))
-
-    // function displayFiveDay (data){
-    //     const {dt_txt} = data
-    //     const {icon,description} = data.weather
-    //     const {temp,feels_like,humidity} = data.main
-    //     const {speed} = data.wind
-    //     console.log(dt_txt, icon, description, temp, feels_like, humidity,speed)
-    //     document.querySelectorAll('.futureDayDate').innerHTML = dt_txt
-    //     document.querySelector('#icon').src = "https://openweathermap.org/img/wn/"+ icon +".png"
-    //     document.querySelector('#ft').innerHTML = "Temperature: " + temp + '°F'
-    //     document.querySelector('#fd').innerHTML= "Descriptions: " + description
-    //     document.querySelector('#ff').innerHTML= "Feels Like: "+ feels_like + '°F'
-    //     document.querySelector('#fh').innerHTML= "Humidity: "+ humidity + '%'
-    //     document.querySelector('#fw').innerHTML= "Wind Speed: "+ speed + "MPH"
-    // }
 } 
 
-var date = new Date()
+function showWeather(response){
+    console.log(response)
+    let row = document.querySelector('row.futureForecast')
 
-function getDate (day){
-    if(day + date.fiveDayForcast() > 6 ){
-        return day + date.fiveDayForcast()-7
-    } else{
-        return day + date.fiveDayForcast()
+    row.innerHTML = response.list.map((day, idx) => {
+    if(idx <= 5){
+        let dt = new Date(day.dt *1000)
+        return `<div class="card text-white bg-info mb-3 cardOne" style="max-width: 150px;">
+        <div class="card-header futureDayDate">${dt.toDateString()}</div>
+        <div class="card-body weatherFuture">
+        <img src="https://openweathermap.org/img/wn/"+ ${day.weather[0].icon}+".png"
+        <p id="ft">${day.main[0].temp}</p>
+        <p id="fd">${day.weather[0].description}</p>
+        <p id="fh">${day.main[0].humidity}</p>
+        <p id="ff">Feels Like: </p>
+        <p id="fw">Wind: </p>
+        </div>
+        </div>`
+
     }
+    }).join('')
 }
+
+// var date = new Date()
+
+// function getDate (day){
+//     if(day + date.fiveDayForecast() > 6 ){
+//         return day + date.fiveDayForecast()-7
+//     } else{
+//         return day + date.fiveDayForecast()
+//     }
+// }
