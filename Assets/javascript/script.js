@@ -12,19 +12,42 @@ var futureDate = document.querySelectorAll('.futureDayDate')
 // console.log(date)
 
 function searchDisplay (){
-    var searchHistory = JSON.parse(localStorage.getItem('searched')) | [];
-    $('.hisBtn').html('')
+    var searchHistory = JSON.parse(localStorage.getItem('searched')) || [];
     for (i = 0; i < searchHistory.length; i++) {
-        var city = searchHistory[i]
+        var button = document.getElementsByClassName('.btn')
+        var hisBtn = document.querySelector('.hisBtn')
+        button.textContent = searchHistory[i]
+        hisBtn.appendChild(button)
+        button.addEventListener('click', grabWeather)
     }
-    document.querySelector('search').addEventListener('click', app.getWeather())
-    document.querySelector('search').addEventListener('click', app.showWeather())
+    
 }
 
-function deleteLocalS (){
-    localStorage.removeItem('searched')
-    $('.hisBtn').html('')
-    searchHistory = []
+var cityInput = document.querySelector('#search')
+var searchBtn = document.getElementById('searchBtn')
+
+searchBtn.on("click", function (event) {
+    event.preventDefault()
+    console.log(cityInput.value)
+    getWeather(cityInput.value)
+    if (cityInput.value ==''){
+        console.log(`Enter a City`)
+    } else if (searched.append(cityInput.value)) {
+        JSON.parse(localStorage.getItem('searched')) || []
+    } else {
+        searched.push(cityInput.value)
+        localStorage.setItem('searched', JSON.stringify(searched))
+    }
+})
+
+// function deleteLocalS (){
+//     localStorage.removeItem('searched')
+//     $('.hisBtn').html('')
+//     searchHistory = []
+// }
+
+function grabWeather(event) {
+    getWeather(event.target.textContent)
 }
 
 
@@ -53,9 +76,6 @@ function getWeather (city) {
         document.querySelector('#cf').innerHTML= "Feels Like: "+ feels_like + '°F'
         document.querySelector('#ch').innerHTML= "Humidity: "+ humidity + '%'
         document.querySelector('#cw').innerHTML= "Wind Speed: "+ speed + "MPH"
-    }
-    function search () {
-        this.getWeather(document.querySelector('.search').value)
     }
 }
 
@@ -91,13 +111,3 @@ function showWeather(response){
     }
     }).join('')
 }
-
-// var date = new Date()
-
-// function getDate (day){
-//     if(day + date.fiveDayForecast() > 6 ){
-//         return day + date.fiveDayForecast()-7
-//     } else{
-//         return day + date.fiveDayForecast()
-//     }
-// }
