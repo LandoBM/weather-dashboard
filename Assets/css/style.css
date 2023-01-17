@@ -24,3 +24,7 @@ label {
 #cd {
     text-transform: capitalize;
 }
+
+#currentDay {
+    width: 400%;
+}
