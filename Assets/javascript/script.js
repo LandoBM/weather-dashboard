@@ -137,7 +137,8 @@ searchEvent.addEventListener("submit", (event) => {
     if (citySearch.value === ''){
         console.log(`Search A City`)
     } else {
-        localStorage.setItem('searched', JSON.stringify(hisBtn))
+        searchHistory.push(citySearch.value)
+        localStorage.setItem('searched', JSON.stringify(searchHistory))
     }
 })
 
